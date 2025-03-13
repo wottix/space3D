@@ -13,7 +13,7 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.set(0, 1.6, 3);
 
 // Renderer s podporou VR
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, canvas: document.getElementById('sceneCanvas') });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.xr.enabled = true;
 document.body.appendChild(renderer.domElement);
@@ -36,9 +36,25 @@ loader.load('models/scene.gltf', function (gltf) {
     scene.add(gltf.scene);
 });
 
+// Přidání krychle
+const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+camera.position.z = 5;
+
 // Animace
 function animate() {
     controls.update();
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
