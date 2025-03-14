@@ -1,7 +1,11 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js",
+      "three/examples/jsm/webxr/XRButton.js": "https://cdn.jsdelivr.net/npm/three@latest/examples/jsm/webxr/XRButton.js",
+      "three/examples/jsm/loaders/GLTFLoader.js": "https://cdn.jsdelivr.net/npm/three@latest/examples/jsm/loaders/GLTFLoader.js"
+    }
+  }
+  </script>
 
 // Vytvoření scény
 const scene = new THREE.Scene();
