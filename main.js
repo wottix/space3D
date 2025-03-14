@@ -18,7 +18,7 @@ renderer.xr.enabled = true;
 document.body.appendChild(renderer.domElement);
 
 // Přidání VR tlačítka
-document.body.appendChild(VRButton.createButton(renderer));
+document.body.appendChild(XRButton.createButton(renderer));
 
 // Světlo
 const light = new THREE.AmbientLight(0xffffff, 2);
