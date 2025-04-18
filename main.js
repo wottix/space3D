@@ -29,12 +29,18 @@ scene.add(light);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
-// Načtení 3D modelu
-const loader = new GLTFLoader();
-loader.load('models/scene.gltf', function (gltf) {
-    gltf.scene.scale.set(2, 2, 2);
-    scene.add(gltf.scene);
-});
+//načtení modelu
+loader.load(
+    'models/planet.glb',
+    function (glb) {
+        glb.scene.scale.set(2, 2, 2);
+        planet.add(glb.scene);
+    },
+    undefined,
+    function (error) {
+        console.error('An error occurred while loading the model:', error);
+    }
+);
 
 // Přidání krychle
 const geometry = new THREE.BoxGeometry();
