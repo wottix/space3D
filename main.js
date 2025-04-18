@@ -29,15 +29,18 @@ scene.add(light);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
-// ✅ Define the loader!
+// ✅ GLTFLoader
 const loader = new GLTFLoader();
 
-// Load model
-loader.load('models/myModel.glb');
-
-    function (glb) {
-        glb.scene.scale.set(2, 2, 2);
-        scene.add(glb.scene);
+// ✅ Load your model — put the correct path to your model file here
+let model; // Declare a variable to hold your loaded model
+loader.load(
+    'models/myModel.glb', // Replace with the actual path to your model
+    function (gltf) {
+        model = gltf.scene;
+        model.scale.set(2, 2, 2); // Optional: resize the model
+        model.position.set(0, 0, 0); // Optional: reposition the model
+        scene.add(model); // Add model to scene
     },
     undefined,
     function (error) {
@@ -45,18 +48,23 @@ loader.load('models/myModel.glb');
     }
 );
 
-// Animation
+// Animation loop
 function animate() {
     controls.update();
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+
+    // Optional: rotate your model (if loaded)
+    if (model) {
+        model.rotation.y += 0.01;
+    }
+
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
 
-// Resize handling
+// Resize
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
+
