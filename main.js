@@ -32,15 +32,24 @@ controls.enableDamping = true;
 // ✅ GLTFLoader
 const loader = new GLTFLoader();
 
-// ✅ Load your model — put the correct path to your model file here
-let model; // Declare a variable to hold your loaded model
+const loader = new GLTFLoader();
+
+let model;
+// load modelu
 loader.load(
-    'models/myModel.glb', // Replace with the actual path to your model
+    'models/myModel.glb',
     function (gltf) {
         model = gltf.scene;
-        model.scale.set(2, 2, 2); // Optional: resize the model
-        model.position.set(0, 0, 0); // Optional: reposition the model
-        scene.add(model); // Add model to scene
+        model.scale.set(2, 2, 2);
+        model.position.set(0, 0, 0);
+        scene.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error('An error occurred while loading the model:', error);
+    }
+);
+
     },
     undefined,
     function (error) {
