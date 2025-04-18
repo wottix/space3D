@@ -33,8 +33,8 @@ controls.enableDamping = true;
 const loader = new GLTFLoader();
 
 // Load model
-loader.load(
-    './models/planet.glb',
+loader.load('models/myModel.glb');
+
     function (glb) {
         glb.scene.scale.set(2, 2, 2);
         scene.add(glb.scene);
