@@ -31,10 +31,13 @@ controls.enableDamping = true;
 
 //načtení modelu
 loader.load(
+const loader = new GLTFLoader();
+
+loader.load(
     'models/planet.glb',
     function (glb) {
         glb.scene.scale.set(2, 2, 2);
-        planet.add(glb.scene);
+        scene.add(glb.scene);
     },
     undefined,
     function (error) {
