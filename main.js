@@ -118,29 +118,3 @@ function getDist(object){
         return false;
     }
 }
-
-function animate() {    
-	renderer.render( scene, camera );
-
-    flyControls.update(0.05);
-
-    for (let i = 0; i<kocicky.length-6; i++){
-        if (kocicky[i].kocicka){
-            if(getDist(kocicky[i].head)){
-                kocicky[i].purr();
-            }
-            else {
-                kocicky[i].reset();
-                kocicky[i].meow();
-            }
-        }
-    }
-    for (let i = kocicky.length-6; i<kocicky.length; i++){
-        if (kocicky[i].kocicka){
-            kocicky[i].dance();
-            kocicky[i].meow();
-        }
-    }
-
-    time++;
-}
